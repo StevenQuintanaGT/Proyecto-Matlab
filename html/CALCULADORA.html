@@ -1,0 +1,842 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>CALCULADORAUMG</title><meta name="generator" content="MATLAB 9.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-05-24"><meta name="DC.source" content="CALCULADORAUMG.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="keyword">function</span> varargout = CALCULADORAUMG(varargin)
+<span class="comment">% CALCULADORAUMG MATLAB code for CALCULADORAUMG.fig</span>
+<span class="comment">%      CALCULADORAUMG, by itself, creates a new CALCULADORAUMG or raises the existing</span>
+<span class="comment">%      singleton*.</span>
+<span class="comment">%</span>
+<span class="comment">%      H = CALCULADORAUMG returns the handle to a new CALCULADORAUMG or the handle to</span>
+<span class="comment">%      the existing singleton*.</span>
+<span class="comment">%</span>
+<span class="comment">%      CALCULADORAUMG('CALLBACK',hObject,eventData,handles,...) calls the local</span>
+<span class="comment">%      function named CALLBACK in CALCULADORAUMG.M with the given input arguments.</span>
+<span class="comment">%</span>
+<span class="comment">%      CALCULADORAUMG('Property','Value',...) creates a new CALCULADORAUMG or raises the</span>
+<span class="comment">%      existing singleton*.  Starting from the left, property value pairs are</span>
+<span class="comment">%      applied to the GUI before CALCULADORAUMG_OpeningFcn gets called.  An</span>
+<span class="comment">%      unrecognized property name or invalid value makes property application</span>
+<span class="comment">%      stop.  All inputs are passed to CALCULADORAUMG_OpeningFcn via varargin.</span>
+<span class="comment">%</span>
+<span class="comment">%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one</span>
+<span class="comment">%      instance to run (singleton)".</span>
+<span class="comment">%</span>
+<span class="comment">% See also: GUIDE, GUIDATA, GUIHANDLES</span>
+
+<span class="comment">% Edit the above text to modify the response to help CALCULADORAUMG</span>
+
+<span class="comment">% Last Modified by GUIDE v2.5 11-May-2021 22:36:34</span>
+
+<span class="comment">% Begin initialization code - DO NOT EDIT</span>
+gui_Singleton = 1;
+gui_State = struct(<span class="string">'gui_Name'</span>,       mfilename, <span class="keyword">...</span>
+                   <span class="string">'gui_Singleton'</span>,  gui_Singleton, <span class="keyword">...</span>
+                   <span class="string">'gui_OpeningFcn'</span>, @CALCULADORAUMG_OpeningFcn, <span class="keyword">...</span>
+                   <span class="string">'gui_OutputFcn'</span>,  @CALCULADORAUMG_OutputFcn, <span class="keyword">...</span>
+                   <span class="string">'gui_LayoutFcn'</span>,  [] , <span class="keyword">...</span>
+                   <span class="string">'gui_Callback'</span>,   []);
+<span class="keyword">if</span> nargin &amp;&amp; ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+<span class="keyword">end</span>
+
+<span class="keyword">if</span> nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+<span class="keyword">else</span>
+    gui_mainfcn(gui_State, varargin{:});
+<span class="keyword">end</span>
+<span class="comment">% End initialization code - DO NOT EDIT</span>
+
+
+<span class="comment">% --- Executes just before CALCULADORAUMG is made visible.</span>
+<span class="keyword">function</span> CALCULADORAUMG_OpeningFcn(hObject, eventdata, handles, varargin)
+handles.memoria= num2cell(zeros(1,12))
+handles.i=0
+handles.NUM=[]
+set(handles.RESULTADO,<span class="string">'String'</span>,<span class="string">'0'</span>);
+guidata(hObject,handles)
+
+
+<span class="comment">% This function has no output args, see OutputFcn.</span>
+<span class="comment">% hObject    handle to figure</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+<span class="comment">% varargin   command line arguments to CALCULADORAUMG (see VARARGIN)</span>
+
+<span class="comment">% Choose default command line output for CALCULADORAUMG</span>
+handles.output = hObject;
+
+<span class="comment">% Update handles structure</span>
+guidata(hObject, handles);
+
+<span class="comment">% UIWAIT makes CALCULADORAUMG wait for user response (see UIRESUME)</span>
+<span class="comment">% uiwait(handles.figure1);</span>
+
+
+<span class="comment">% --- Outputs from this function are returned to the command line.</span>
+<span class="keyword">function</span> varargout = CALCULADORAUMG_OutputFcn(hObject, eventdata, handles)
+<span class="comment">% varargout  cell array for returning output args (see VARARGOUT);</span>
+<span class="comment">% hObject    handle to figure</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+<span class="comment">% Get default command line output from handles structure</span>
+varargout{1} = handles.output;
+
+
+<span class="comment">% --- Executes on button press in CUATRO.</span>
+<span class="keyword">function</span> CUATRO_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+<span class="keyword">if</span> handles.i&lt;=12
+    handles.memoria(handles.i)={<span class="string">'4'</span>}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+<span class="keyword">end</span>
+set(handles.RESULTADO, <span class="string">'String'</span>,handles.Text);
+guidata(hObject,handles);
+<span class="comment">% hObject    handle to CUATRO (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in UNO.</span>
+<span class="keyword">function</span> UNO_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+<span class="keyword">if</span> handles.i&lt;=12
+    handles.memoria(handles.i)={<span class="string">'1'</span>}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+<span class="keyword">end</span>
+set(handles.RESULTADO, <span class="string">'String'</span>,handles.Text);
+guidata(hObject,handles);
+
+<span class="comment">% hObject    handle to UNO (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in CERO.</span>
+<span class="keyword">function</span> CERO_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+<span class="keyword">if</span> handles.i&lt;=12
+    handles.memoria(handles.i)={<span class="string">'0'</span>}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+<span class="keyword">end</span>
+set(handles.RESULTADO, <span class="string">'String'</span>,handles.Text);
+guidata(hObject,handles);
+
+<span class="comment">% hObject    handle to CERO (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in CINCO.</span>
+<span class="keyword">function</span> CINCO_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+<span class="keyword">if</span> handles.i&lt;=12
+    handles.memoria(handles.i)={<span class="string">'5'</span>}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+<span class="keyword">end</span>
+set(handles.RESULTADO, <span class="string">'String'</span>,handles.Text);
+guidata(hObject,handles);
+<span class="comment">% hObject    handle to CINCO (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in DOS.</span>
+<span class="keyword">function</span> DOS_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+<span class="keyword">if</span> handles.i&lt;=12
+    handles.memoria(handles.i)={<span class="string">'2'</span>}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+<span class="keyword">end</span>
+set(handles.RESULTADO, <span class="string">'String'</span>,handles.Text);
+guidata(hObject,handles);
+<span class="comment">% hObject    handle to DOS (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in PUNTO.</span>
+<span class="keyword">function</span> PUNTO_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+<span class="keyword">if</span> handles.i&lt;=12
+    handles.memoria(handles.i)={<span class="string">'.'</span>}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+<span class="keyword">end</span>
+set(handles.RESULTADO, <span class="string">'String'</span>,handles.Text);
+guidata(hObject,handles);
+<span class="comment">% hObject    handle to PUNTO (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in SEIS.</span>
+<span class="keyword">function</span> SEIS_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+<span class="keyword">if</span> handles.i&lt;=12
+    handles.memoria(handles.i)={<span class="string">'6'</span>}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+<span class="keyword">end</span>
+set(handles.RESULTADO, <span class="string">'String'</span>,handles.Text);
+guidata(hObject,handles);
+<span class="comment">% hObject    handle to SEIS (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in TRES.</span>
+<span class="keyword">function</span> TRES_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+<span class="keyword">if</span> handles.i&lt;=12
+    handles.memoria(handles.i)={<span class="string">'3'</span>}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+<span class="keyword">end</span>
+set(handles.RESULTADO, <span class="string">'String'</span>,handles.Text);
+guidata(hObject,handles);
+<span class="comment">% hObject    handle to TRES (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in IGUAL.</span>
+<span class="keyword">function</span> IGUAL_Callback(hObject, eventdata, handles)
+<span class="keyword">if</span>(handles.operacion==1)
+    handles.R=handles.NUM+str2double(handles.Text)
+    set (handles.RESULTADO,<span class="string">'String'</span>,handles.R)
+
+<span class="keyword">end</span>
+guidata(hObject,handles)
+<span class="keyword">if</span>(handles.operacion==2)
+    handles.R=handles.NUM-str2double(handles.Text)
+     set (handles.RESULTADO,<span class="string">'String'</span>,handles.R)
+     <span class="keyword">end</span>
+guidata(hObject,handles)
+<span class="keyword">if</span>(handles.operacion==3)
+    handles.R=handles.NUM*str2double(handles.Text)
+     set (handles.RESULTADO,<span class="string">'String'</span>,handles.R)
+     <span class="keyword">end</span>
+guidata(hObject,handles)
+<span class="keyword">if</span>(handles.operacion==4)
+    handles.R=handles.NUM/str2double(handles.Text)
+     set (handles.RESULTADO,<span class="string">'String'</span>,handles.R)
+     <span class="keyword">end</span>
+guidata(hObject,handles)
+
+
+<span class="comment">% hObject    handle to IGUAL (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in MENOS.</span>
+<span class="keyword">function</span> MENOS_Callback(hObject, eventdata, handles)
+handles.NUM=str2double(get(handles.RESULTADO,<span class="string">'String'</span>))
+set(handles.RESULTADO,<span class="string">'String'</span>,<span class="string">''</span>)
+handles.memoria=num2cell(zeros(1,12))
+handles.i=0;
+handles.operacion=2
+guidata(hObject,handles);
+
+<span class="comment">% hObject    handle to MENOS (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in MAS.</span>
+<span class="keyword">function</span> MAS_Callback(hObject, eventdata, handles)
+handles.NUM=str2double(get(handles.RESULTADO,<span class="string">'String'</span>))
+set(handles.RESULTADO,<span class="string">'String'</span>,<span class="string">''</span>)
+handles.memoria=num2cell(zeros(1,12))
+handles.i=0;
+handles.operacion=1
+guidata(hObject,handles)
+
+<span class="comment">% hObject    handle to MAS (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in SIETE.</span>
+<span class="keyword">function</span> SIETE_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+<span class="keyword">if</span> handles.i&lt;=12
+    handles.memoria(handles.i)={<span class="string">'7'</span>}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+<span class="keyword">end</span>
+set(handles.RESULTADO, <span class="string">'String'</span>,handles.Text);
+guidata(hObject,handles);
+<span class="comment">% hObject    handle to SIETE (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in OCHO.</span>
+<span class="keyword">function</span> OCHO_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+<span class="keyword">if</span> handles.i&lt;=12
+    handles.memoria(handles.i)={<span class="string">'8'</span>}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+<span class="keyword">end</span>
+set(handles.RESULTADO, <span class="string">'String'</span>,handles.Text);
+guidata(hObject,handles);
+<span class="comment">% hObject    handle to OCHO (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in NUEVE.</span>
+<span class="keyword">function</span> NUEVE_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+<span class="keyword">if</span> handles.i&lt;=12
+    handles.memoria(handles.i)={<span class="string">'9'</span>}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+<span class="keyword">end</span>
+set(handles.RESULTADO, <span class="string">'String'</span>,handles.Text);
+guidata(hObject,handles);
+<span class="comment">% hObject    handle to NUEVE (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in MULTIPLICAR.</span>
+<span class="keyword">function</span> MULTIPLICAR_Callback(hObject, eventdata, handles)
+handles.NUM=str2double(get(handles.RESULTADO,<span class="string">'String'</span>))
+set(handles.RESULTADO,<span class="string">'String'</span>,<span class="string">''</span>)
+handles.memoria=num2cell(zeros(1,12))
+handles.i=0;
+handles.operacion=3
+guidata(hObject,handles);
+<span class="comment">% hObject    handle to MULTIPLICAR (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in BORRAR.</span>
+<span class="keyword">function</span> BORRAR_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to BORRAR (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in PORCIENTO.</span>
+<span class="keyword">function</span> PORCIENTO_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to PORCIENTO (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in RAIZ.</span>
+<span class="keyword">function</span> RAIZ_Callback(hObject, eventdata, handles)
+<span class="comment">% hObject    handle to RAIZ (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+
+
+<span class="comment">% --- Executes on button press in DIVIDIR.</span>
+<span class="keyword">function</span> DIVIDIR_Callback(hObject, eventdata, handles)
+handles.NUM=str2double(get(handles.RESULTADO,<span class="string">'String'</span>))
+set(handles.RESULTADO,<span class="string">'String'</span>,<span class="string">''</span>)
+handles.memoria=num2cell(zeros(1,12))
+handles.i=0;
+handles.operacion=4
+guidata(hObject,handles);
+<span class="comment">% hObject    handle to DIVIDIR (see GCBO)</span>
+<span class="comment">% eventdata  reserved - to be defined in a future version of MATLAB</span>
+<span class="comment">% handles    structure with handles and user data (see GUIDATA)</span>
+</pre><pre class="codeoutput">
+handles = 
+
+  struct with fields:
+
+        figure1: [1&times;1 Figure]
+      RESULTADO: [1&times;1 UIControl]
+        DIVIDIR: [1&times;1 UIControl]
+           RAIZ: [1&times;1 UIControl]
+      PORCIENTO: [1&times;1 UIControl]
+         BORRAR: [1&times;1 UIControl]
+    MULTIPLICAR: [1&times;1 UIControl]
+          NUEVE: [1&times;1 UIControl]
+           OCHO: [1&times;1 UIControl]
+          SIETE: [1&times;1 UIControl]
+            MAS: [1&times;1 UIControl]
+          MENOS: [1&times;1 UIControl]
+          IGUAL: [1&times;1 UIControl]
+           TRES: [1&times;1 UIControl]
+           SEIS: [1&times;1 UIControl]
+          PUNTO: [1&times;1 UIControl]
+            DOS: [1&times;1 UIControl]
+          CINCO: [1&times;1 UIControl]
+           CERO: [1&times;1 UIControl]
+            UNO: [1&times;1 UIControl]
+         CUATRO: [1&times;1 UIControl]
+        memoria: {[0]  [0]  [0]  [0]  [0]  [0]  [0]  [0]  [0]  [0]  [0]  [0]}
+
+
+handles = 
+
+  struct with fields:
+
+        figure1: [1&times;1 Figure]
+      RESULTADO: [1&times;1 UIControl]
+        DIVIDIR: [1&times;1 UIControl]
+           RAIZ: [1&times;1 UIControl]
+      PORCIENTO: [1&times;1 UIControl]
+         BORRAR: [1&times;1 UIControl]
+    MULTIPLICAR: [1&times;1 UIControl]
+          NUEVE: [1&times;1 UIControl]
+           OCHO: [1&times;1 UIControl]
+          SIETE: [1&times;1 UIControl]
+            MAS: [1&times;1 UIControl]
+          MENOS: [1&times;1 UIControl]
+          IGUAL: [1&times;1 UIControl]
+           TRES: [1&times;1 UIControl]
+           SEIS: [1&times;1 UIControl]
+          PUNTO: [1&times;1 UIControl]
+            DOS: [1&times;1 UIControl]
+          CINCO: [1&times;1 UIControl]
+           CERO: [1&times;1 UIControl]
+            UNO: [1&times;1 UIControl]
+         CUATRO: [1&times;1 UIControl]
+        memoria: {[0]  [0]  [0]  [0]  [0]  [0]  [0]  [0]  [0]  [0]  [0]  [0]}
+              i: 0
+
+
+handles = 
+
+  struct with fields:
+
+        figure1: [1&times;1 Figure]
+      RESULTADO: [1&times;1 UIControl]
+        DIVIDIR: [1&times;1 UIControl]
+           RAIZ: [1&times;1 UIControl]
+      PORCIENTO: [1&times;1 UIControl]
+         BORRAR: [1&times;1 UIControl]
+    MULTIPLICAR: [1&times;1 UIControl]
+          NUEVE: [1&times;1 UIControl]
+           OCHO: [1&times;1 UIControl]
+          SIETE: [1&times;1 UIControl]
+            MAS: [1&times;1 UIControl]
+          MENOS: [1&times;1 UIControl]
+          IGUAL: [1&times;1 UIControl]
+           TRES: [1&times;1 UIControl]
+           SEIS: [1&times;1 UIControl]
+          PUNTO: [1&times;1 UIControl]
+            DOS: [1&times;1 UIControl]
+          CINCO: [1&times;1 UIControl]
+           CERO: [1&times;1 UIControl]
+            UNO: [1&times;1 UIControl]
+         CUATRO: [1&times;1 UIControl]
+        memoria: {[0]  [0]  [0]  [0]  [0]  [0]  [0]  [0]  [0]  [0]  [0]  [0]}
+              i: 0
+            NUM: []
+
+</pre><img vspace="5" hspace="5" src="CALCULADORAUMG_01.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2018b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function varargout = CALCULADORAUMG(varargin)
+% CALCULADORAUMG MATLAB code for CALCULADORAUMG.fig
+%      CALCULADORAUMG, by itself, creates a new CALCULADORAUMG or raises the existing
+%      singleton*.
+%
+%      H = CALCULADORAUMG returns the handle to a new CALCULADORAUMG or the handle to
+%      the existing singleton*.
+%
+%      CALCULADORAUMG('CALLBACK',hObject,eventData,handles,...) calls the local
+%      function named CALLBACK in CALCULADORAUMG.M with the given input arguments.
+%
+%      CALCULADORAUMG('Property','Value',...) creates a new CALCULADORAUMG or raises the
+%      existing singleton*.  Starting from the left, property value pairs are
+%      applied to the GUI before CALCULADORAUMG_OpeningFcn gets called.  An
+%      unrecognized property name or invalid value makes property application
+%      stop.  All inputs are passed to CALCULADORAUMG_OpeningFcn via varargin.
+%
+%      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
+%      instance to run (singleton)".
+%
+% See also: GUIDE, GUIDATA, GUIHANDLES
+
+% Edit the above text to modify the response to help CALCULADORAUMG
+
+% Last Modified by GUIDE v2.5 11-May-2021 22:36:34
+
+% Begin initialization code - DO NOT EDIT
+gui_Singleton = 1;
+gui_State = struct('gui_Name',       mfilename, ...
+                   'gui_Singleton',  gui_Singleton, ...
+                   'gui_OpeningFcn', @CALCULADORAUMG_OpeningFcn, ...
+                   'gui_OutputFcn',  @CALCULADORAUMG_OutputFcn, ...
+                   'gui_LayoutFcn',  [] , ...
+                   'gui_Callback',   []);
+if nargin && ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+end
+
+if nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+else
+    gui_mainfcn(gui_State, varargin{:});
+end
+% End initialization code - DO NOT EDIT
+
+
+% REPLACE_WITH_DASH_DASH- Executes just before CALCULADORAUMG is made visible.
+function CALCULADORAUMG_OpeningFcn(hObject, eventdata, handles, varargin)
+handles.memoria= num2cell(zeros(1,12))
+handles.i=0
+handles.NUM=[]
+set(handles.RESULTADO,'String','0');
+guidata(hObject,handles)
+
+
+% This function has no output args, see OutputFcn.
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% varargin   command line arguments to CALCULADORAUMG (see VARARGIN)
+
+% Choose default command line output for CALCULADORAUMG
+handles.output = hObject;
+
+% Update handles structure
+guidata(hObject, handles);
+
+% UIWAIT makes CALCULADORAUMG wait for user response (see UIRESUME)
+% uiwait(handles.figure1);
+
+
+% REPLACE_WITH_DASH_DASH- Outputs from this function are returned to the command line.
+function varargout = CALCULADORAUMG_OutputFcn(hObject, eventdata, handles) 
+% varargout  cell array for returning output args (see VARARGOUT);
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Get default command line output from handles structure
+varargout{1} = handles.output;
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in CUATRO.
+function CUATRO_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+if handles.i<=12
+    handles.memoria(handles.i)={'4'}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+end
+set(handles.RESULTADO, 'String',handles.Text);
+guidata(hObject,handles);
+% hObject    handle to CUATRO (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in UNO.
+function UNO_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+if handles.i<=12
+    handles.memoria(handles.i)={'1'}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+end
+set(handles.RESULTADO, 'String',handles.Text);
+guidata(hObject,handles);
+
+% hObject    handle to UNO (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in CERO.
+function CERO_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+if handles.i<=12
+    handles.memoria(handles.i)={'0'}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+end
+set(handles.RESULTADO, 'String',handles.Text);
+guidata(hObject,handles);
+
+% hObject    handle to CERO (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in CINCO.
+function CINCO_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+if handles.i<=12
+    handles.memoria(handles.i)={'5'}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+end
+set(handles.RESULTADO, 'String',handles.Text);
+guidata(hObject,handles);
+% hObject    handle to CINCO (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in DOS.
+function DOS_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+if handles.i<=12
+    handles.memoria(handles.i)={'2'}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+end
+set(handles.RESULTADO, 'String',handles.Text);
+guidata(hObject,handles);
+% hObject    handle to DOS (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in PUNTO.
+function PUNTO_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+if handles.i<=12
+    handles.memoria(handles.i)={'.'}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+end
+set(handles.RESULTADO, 'String',handles.Text);
+guidata(hObject,handles);
+% hObject    handle to PUNTO (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in SEIS.
+function SEIS_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+if handles.i<=12
+    handles.memoria(handles.i)={'6'}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+end
+set(handles.RESULTADO, 'String',handles.Text);
+guidata(hObject,handles);
+% hObject    handle to SEIS (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in TRES.
+function TRES_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+if handles.i<=12
+    handles.memoria(handles.i)={'3'}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+end
+set(handles.RESULTADO, 'String',handles.Text);
+guidata(hObject,handles);
+% hObject    handle to TRES (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in IGUAL.
+function IGUAL_Callback(hObject, eventdata, handles)
+if(handles.operacion==1)
+    handles.R=handles.NUM+str2double(handles.Text)
+    set (handles.RESULTADO,'String',handles.R)
+   
+end
+guidata(hObject,handles)
+if(handles.operacion==2)
+    handles.R=handles.NUM-str2double(handles.Text)
+     set (handles.RESULTADO,'String',handles.R)
+     end
+guidata(hObject,handles)
+if(handles.operacion==3)
+    handles.R=handles.NUM*str2double(handles.Text)
+     set (handles.RESULTADO,'String',handles.R)
+     end
+guidata(hObject,handles)
+if(handles.operacion==4)
+    handles.R=handles.NUM/str2double(handles.Text)
+     set (handles.RESULTADO,'String',handles.R)
+     end
+guidata(hObject,handles)
+
+
+% hObject    handle to IGUAL (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in MENOS.
+function MENOS_Callback(hObject, eventdata, handles)
+handles.NUM=str2double(get(handles.RESULTADO,'String'))
+set(handles.RESULTADO,'String','')
+handles.memoria=num2cell(zeros(1,12))
+handles.i=0;
+handles.operacion=2
+guidata(hObject,handles);
+
+% hObject    handle to MENOS (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in MAS.
+function MAS_Callback(hObject, eventdata, handles)
+handles.NUM=str2double(get(handles.RESULTADO,'String'))
+set(handles.RESULTADO,'String','')
+handles.memoria=num2cell(zeros(1,12))
+handles.i=0;
+handles.operacion=1
+guidata(hObject,handles)
+
+% hObject    handle to MAS (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in SIETE.
+function SIETE_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+if handles.i<=12
+    handles.memoria(handles.i)={'7'}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+end
+set(handles.RESULTADO, 'String',handles.Text);
+guidata(hObject,handles);
+% hObject    handle to SIETE (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in OCHO.
+function OCHO_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+if handles.i<=12
+    handles.memoria(handles.i)={'8'}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+end
+set(handles.RESULTADO, 'String',handles.Text);
+guidata(hObject,handles);
+% hObject    handle to OCHO (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in NUEVE.
+function NUEVE_Callback(hObject, eventdata, handles)
+handles.i=handles.i+1
+if handles.i<=12
+    handles.memoria(handles.i)={'9'}
+    handles.Text = num2str(cell2mat(handles.memoria(1:handles.i)))
+end
+set(handles.RESULTADO, 'String',handles.Text);
+guidata(hObject,handles);
+% hObject    handle to NUEVE (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in MULTIPLICAR.
+function MULTIPLICAR_Callback(hObject, eventdata, handles)
+handles.NUM=str2double(get(handles.RESULTADO,'String'))
+set(handles.RESULTADO,'String','')
+handles.memoria=num2cell(zeros(1,12))
+handles.i=0;
+handles.operacion=3
+guidata(hObject,handles);
+% hObject    handle to MULTIPLICAR (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in BORRAR.
+function BORRAR_Callback(hObject, eventdata, handles)
+% hObject    handle to BORRAR (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in PORCIENTO.
+function PORCIENTO_Callback(hObject, eventdata, handles)
+% hObject    handle to PORCIENTO (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in RAIZ.
+function RAIZ_Callback(hObject, eventdata, handles)
+% hObject    handle to RAIZ (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% REPLACE_WITH_DASH_DASH- Executes on button press in DIVIDIR.
+function DIVIDIR_Callback(hObject, eventdata, handles)
+handles.NUM=str2double(get(handles.RESULTADO,'String'))
+set(handles.RESULTADO,'String','')
+handles.memoria=num2cell(zeros(1,12))
+handles.i=0;
+handles.operacion=4
+guidata(hObject,handles);
+% hObject    handle to DIVIDIR (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+##### SOURCE END #####
+--></body></html>
